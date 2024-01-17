@@ -1,0 +1,38 @@
+{
+    "clientInfo": {
+        "version": "7.6.0-1524",
+        "description": "Virtual FMC for CI test",
+        "name": "firepower",
+        "guid": "11111111-2222-3333-4444-555555555555",
+        "type": "Cisco Secure Firewall Management Center for VMware",
+        "ip": "10.10.32.170"
+    },
+    "settings": {
+        "client": {
+            "administration": {
+                "auth": {
+                    "csrfToken": "c7752e90-4705-4022-8767-fde246018a6a"
+                }
+            },
+            "statusCallback": {
+                "uri": "http://localhost:8090/statusCallback"
+            }
+        },
+        "exchange": {
+            "registration": {
+                "refreshInterval": 10
+            },
+            "fqdn": "stage-api-sse.cisco.com"
+        },
+        "events": {
+            "uri": "ipc:///var/sf/run/EventHandler_SSEConnector.sock",
+            "type": "ZMQ_PUSH"
+        },
+        "fileUpload": {
+            "type": "tls_fingerprint",
+            "uri": "file:///var/log/mercury_telemetry_stats.json.gz",
+            "refreshInterval": 86400,
+            "skipIfMissing": "true"
+        }
+    }
+}

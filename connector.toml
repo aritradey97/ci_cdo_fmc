@@ -1,0 +1,32 @@
+# Default connector configuration
+
+[Globals]
+server_port = 8989
+data_dir = "/ngfw/var/lib/connector/" # Path for SSE connector data.
+cert_store = "/etc/ssl/certs/ios.pem" # Path to additional CA certs (on top of default ssl_config pool). Empty string indicates no additional CAs need to be used.
+interface = "all" # all | localhost
+
+[Globals.Log]
+log_type = "file" # Values: file|uds
+log_file_path = "/ngfw/var/log/connector/connector.log"
+log_level = "INFO" # INFO|WARN|DEBUG|ERROR
+log_format = "text" # text | json
+detailed_logging = true
+
+[Globals.Contexts.Administration]
+enabled = true
+
+[Globals.Contexts.Messaging]
+enabled = true
+
+[Globals.State]
+encrypted = true
+
+[Globals.Contexts.Events]
+enabled = true # STATIC Eventing module is always enabled including for onbox mode
+sink_backoff_max = "1m" # Maximum backoff time when retrying the WebSocket connection. e.g. "90s" or "1m30s" or "1.5m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Can not be zero. Default is 1m.
+source_zeromq_backoff_max = "1m" # Maximum backoff time when retrying the ZeroMQ connection. e.g. "90s" or "1m30s" or "1.5m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Can not be zero. Default is 1m.
+sink_validate_ssl = true # Validate WebSocket server's SSL certificate
+
+[Globals.Contexts.HTTPProxy]
+enabled = true # HTTPProxy module will be enabled when set true
